@@ -1,6 +1,6 @@
 {
   "name": "shortcuts-app",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "private": true,
   "description": "Save your shortcuts in a desktop application, like Opera does.",
   "author": "Florian LEFEBVRE",
@@ -12,7 +12,6 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "electron:build": "yarn tailwind:prod && vue-cli-service electron:build",
-    "electron:release": "yarn electron:build -p always",
     "electron:serve": "yarn tailwind:dev && vue-cli-service electron:serve",
     "electron:generate-icons": "electron-icon-builder --input=./public/icon.png --output=build --flatten",
     "postinstall": "electron-builder install-app-deps",
