@@ -8,6 +8,12 @@ module.exports = {
         appId: "com.florian-lefebvre.shortcuts-app",
         productName: appName,
         copyright: "Copyright © Florian LEFEBVRE",
+        publish: [
+          {
+            provider: "github",
+            releaseType: "draft",
+          },
+        ],
       },
     },
   },

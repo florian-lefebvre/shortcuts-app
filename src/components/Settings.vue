@@ -27,7 +27,7 @@
           </svg>
         </button>
       </div>
-      <div class="bg-gray-300 h-0.5 mb-10"></div>
+      <div class="bg-gray-200 h-0.5 mb-10"></div>
       <div class="flex justify-between items-center mb-5">
         <h2 class="flex-none text-2xl leading-6 font-medium text-gray-700 mr-3">
           Sites
