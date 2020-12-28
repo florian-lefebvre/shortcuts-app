@@ -11,7 +11,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "electron:build": "yarn tailwind:prod && vue-cli-service electron:build --linux deb --win nsis",
+    "electron:build": "yarn tailwind:prod && vue-cli-service electron:build --win nsis",
     "electron:serve": "yarn tailwind:dev && vue-cli-service electron:serve",
     "electron:generate-icons": "electron-icon-builder --input=./public/icon.png --output=build --flatten",
     "postinstall": "electron-builder install-app-deps",
