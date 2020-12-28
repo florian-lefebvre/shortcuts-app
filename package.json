@@ -4,6 +4,9 @@
   "private": true,
   "description": "Save your shortcuts in a desktop application, like Opera does.",
   "author": "Florian LEFEBVRE",
+  "homepage": "https://github.com/florian-lefebvre/shortcuts-app",
+  "repository": "https://github.com/florian-lefebvre/shortcuts-app",
+  "license": "GNU GPLv3",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
