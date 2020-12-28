@@ -1,0 +1,49 @@
+{
+  "name": "shortcuts-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Save your shortcuts in a desktop application, like Opera does.",
+  "author": "Florian LEFEBVRE",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "electron:build": "yarn tailwind:prod && vue-cli-service electron:build --linux deb --win nsis",
+    "electron:serve": "yarn tailwind:dev && vue-cli-service electron:serve",
+    "electron:generate-icons": "electron-icon-builder --input=./public/icon.png --output=build --flatten",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps",
+    "tailwind:prod": "postcss tailwind.css -o src/assets/css/tailwind.min.css -- prod",
+    "tailwind:dev": "postcss tailwind.css -o src/assets/css/tailwind.min.css -- dev"
+  },
+  "main": "background.js",
+  "dependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "autoprefixer": "9",
+    "core-js": "^3.6.5",
+    "electron-store": "^6.0.1",
+    "postcss": "7",
+    "postcss-cli": "^7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuedraggable": "^2.24.3",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "cssnano": "^4.1.10",
+    "electron": "^9.0.0",
+    "electron-devtools-installer": "^3.1.0",
+    "electron-icon-builder": "^2.0.1",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-cli-plugin-electron-builder": "~2.0.0-rc.5",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
