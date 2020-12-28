@@ -1,10 +1,9 @@
 # Shortcuts app
 
-![Build/release](https://github.com/florian-lefebvre/shortcuts-app/workflows/Build/release/badge.svg?branch=master)
-
 by [Florian LEFEBVRE](https://github.com/florian-lefebvre)
 
 **TBD**
+
 ## Resources
 
 https://github.com/nklayman/vue-cli-plugin-electron-builder
