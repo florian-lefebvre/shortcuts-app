@@ -1,6 +1,6 @@
 {
   "name": "shortcuts-app",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "private": true,
   "description": "Save your shortcuts in a desktop application, like Opera does.",
   "author": "Florian LEFEBVRE",

@@ -1,13 +1,8 @@
 <template>
   <div>
-    <draggable
-      tag="ul"
-      :list="sites"
-      handle=".handle"
-      @change="change"
-    >
+    <draggable tag="ul" :list="sites" handle=".handle" @change="change">
       <li
-        class="px-4 py-2 flex items-center bg-white mb-2 rounded-xl shadow hover:shadow-md transition-shadow"
+        class="px-4 py-2 flex items-center bg-white mb-2 rounded-xl shadow hover:shadow-md transition-shadow text-gray-600"
         v-for="(site, index) in sites"
         :key="index"
       >
@@ -31,7 +26,7 @@
           class="h-4 w-4 mr-4"
           :src="`http://www.google.com/s2/favicons?domain=${site}`"
         />
-        <span class="text-gray-600">{{ site }} </span>
+        <span class="cursor-default">{{ site }}</span>
         <button @click="remove(index)" class="ml-auto focus:outline-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
