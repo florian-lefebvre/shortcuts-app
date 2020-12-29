@@ -27,7 +27,29 @@
           </svg>
         </button>
       </div>
-      <div class="bg-gray-200 h-0.5 mb-10"></div>
+      <div class="bg-gray-200 h-0.5 mb-5"></div>
+      <div class="mb-5 text-gray-500 font-semibold flex space-x-2">
+        <a
+          class="cursor-pointer hover:underline"
+          @click="
+            require('electron').shell.openExternal(
+              `https://github.com/florian-lefebvre/shortcuts-app/releases/tag/v${require('electron').remote.app.getVersion()}`
+            )
+          "
+          target="_blank"
+          >v{{ require("electron").remote.app.getVersion() }}</a
+        >
+        <a
+          class="cursor-pointer hover:underline"
+          @click="
+            require('electron').shell.openExternal(
+              'https://github.com/florian-lefebvre/shortcuts-app/'
+            )
+          "
+          target="_blank"
+          >Github</a
+        >
+      </div>
       <div class="flex justify-between items-center mb-5">
         <h2 class="flex-none text-2xl leading-6 font-medium text-gray-700 mr-3">
           Sites
@@ -53,11 +75,6 @@
           Delete all
         </button>
       </div>
-      <!-- <div>
-        <div v-for="(site, index) in $store.state.sites.sites" :key="index">
-          {{ site }}
-        </div>
-      </div> -->
       <SettingsSitesList />
     </div>
   </div>

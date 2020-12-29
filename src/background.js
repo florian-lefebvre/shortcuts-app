@@ -81,6 +81,7 @@ function sendNotification(body) {
   const notification = {
     title: "Shortcuts app",
     body: body,
+    icon: path.join(__static, "icon.png"),
   };
   new Notification(notification).show();
 }
