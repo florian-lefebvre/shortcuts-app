@@ -14,14 +14,6 @@ protocol.registerSchemesAsPrivileged([
   { scheme: "app", privileges: { secure: true, standard: true } },
 ]);
 
-function sendNotification(body) {
-  const notification = {
-    title: "Shortcuts app",
-    body,
-  };
-  new Notification(notification).show;
-}
-
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
@@ -47,34 +39,6 @@ async function createWindow() {
     win.loadURL("app://./index.html");
   }
 }
-
-autoUpdater.on("checking-for-update", () => {
-  sendNotification("Checking for update...");
-});
-autoUpdater.on("update-available", () => {
-  sendNotification("Update available.");
-});
-autoUpdater.on("update-not-available", () => {
-  sendNotification("Update not available.");
-});
-autoUpdater.on("error", (err) => {
-  sendNotification("Error in auto-updater. " + err);
-});
-autoUpdater.on("download-progress", (progressObj) => {
-  let log_message = "Download speed: " + progressObj.bytesPerSecond;
-  log_message = log_message + " - Downloaded " + progressObj.percent + "%";
-  log_message =
-    log_message +
-    " (" +
-    progressObj.transferred +
-    "/" +
-    progressObj.total +
-    ")";
-  sendNotification(log_message);
-});
-autoUpdater.on("update-downloaded", () => {
-  sendNotification("Update downloaded");
-});
 
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
@@ -110,6 +74,39 @@ app.on("ready", async () => {
     details.requestHeaders["Referer"] = "http://localhost:8080/";
     callback({ cancel: false, requestHeaders: details.requestHeaders });
   });
+});
+
+function sendNotification(body) {
+  console.log(body);
+  const notification = {
+    title: "Shortcuts app",
+    body: body,
+  };
+  new Notification(notification).show();
+}
+autoUpdater.allowPrerelease = true;
+
+autoUpdater.on("checking-for-update", () => {
+  sendNotification("Checking for update...");
+});
+autoUpdater.on("update-available", (info) => {
+  sendNotification("Update available. " + info);
+});
+autoUpdater.on("update-not-available", (info) => {
+  sendNotification("Update not available. " + info);
+});
+autoUpdater.on("error", (err) => {
+  sendNotification("err: " + err);
+});
+let startedDownload = false;
+autoUpdater.on("download-progress", (progressObj) => {
+  if (!startedDownload) {
+    startedDownload = true;
+    sendNotification("Started download... " + progressObj.percent + "%");
+  }
+});
+autoUpdater.on("update-downloaded", (info) => {
+  sendNotification("Update downloaded. " + info);
 });
 
 app.on("ready", function() {
