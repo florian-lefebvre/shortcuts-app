@@ -1,9 +1,13 @@
 # Shortcuts app
 
+Save your shortcuts in a desktop application, like Opera does.
+
+Made with Electron.js, Vue.js and Tailwind CSS.
+
 by [Florian LEFEBVRE](https://github.com/florian-lefebvre)
 
-![Example image](example.png)
-![Settings page](example-settings.png)
+![Example image](ex.png)
+![Settings page](ex-settings.png)
 
 **TBD**
 
