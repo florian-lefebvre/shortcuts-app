@@ -17,7 +17,7 @@
         "
       >
         <img
-          class="w-full p-2.5"
+          class="w-full p-2.5 h-10"
           :src="`http://www.google.com/s2/favicons?domain=${site}`"
         />
       </div>

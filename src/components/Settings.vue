@@ -29,6 +29,7 @@
       </div>
       <div class="bg-gray-200 h-0.5 mb-5"></div>
       <div class="mb-5 text-gray-500 font-semibold flex space-x-2">
+        <span class="font-normal">© {{ new Date().getFullYear() }} - Made by Florian LEFEBVRE with Electron.js, Vue.js and Tailwind CSS |</span>
         <a
           class="cursor-pointer hover:underline"
           @click="
