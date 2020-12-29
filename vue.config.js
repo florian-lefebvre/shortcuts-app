@@ -11,7 +11,8 @@ module.exports = {
         publish: [
           {
             provider: "github",
-            releaseType: "draft",
+            owner: "florian-lefebvre",
+            repo: "shortcuts-app",
           },
         ],
       },

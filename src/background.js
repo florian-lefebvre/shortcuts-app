@@ -4,13 +4,25 @@ import path from "path";
 import { app, protocol, BrowserWindow, session } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS_DEVTOOLS } from "electron-devtools-installer";
-import { autoUpdater } from "electron-updater"
+const log = require("electron-log");
+import { autoUpdater } from "electron-updater";
 const isDevelopment = process.env.NODE_ENV !== "production";
+
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = "info";
+log.info("App starting...");
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: "app", privileges: { secure: true, standard: true } },
 ]);
+
+let win;
+
+function sendStatusToWindow(text) {
+  log.info(text);
+  win.webContents.send("message", text);
+}
 
 async function createWindow() {
   // Create the browser window.
@@ -35,9 +47,36 @@ async function createWindow() {
     createProtocol("app");
     // Load the index.html when not in development
     win.loadURL("app://./index.html");
-    autoUpdater.checkForUpdatesAndNotify();
   }
 }
+
+autoUpdater.on("checking-for-update", () => {
+  sendStatusToWindow("Checking for update...");
+});
+autoUpdater.on("update-available", () => {
+  sendStatusToWindow("Update available.");
+});
+autoUpdater.on("update-not-available", () => {
+  sendStatusToWindow("Update not available.");
+});
+autoUpdater.on("error", (err) => {
+  sendStatusToWindow("Error in auto-updater. " + err);
+});
+autoUpdater.on("download-progress", (progressObj) => {
+  let log_message = "Download speed: " + progressObj.bytesPerSecond;
+  log_message = log_message + " - Downloaded " + progressObj.percent + "%";
+  log_message =
+    log_message +
+    " (" +
+    progressObj.transferred +
+    "/" +
+    progressObj.total +
+    ")";
+  sendStatusToWindow(log_message);
+});
+autoUpdater.on("update-downloaded", () => {
+  sendStatusToWindow("Update downloaded");
+});
 
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
@@ -73,6 +112,10 @@ app.on("ready", async () => {
     details.requestHeaders["Referer"] = "http://localhost:8080/";
     callback({ cancel: false, requestHeaders: details.requestHeaders });
   });
+});
+
+app.on("ready", function() {
+  autoUpdater.checkForUpdatesAndNotify();
 });
 
 // Exit cleanly on request from parent process in development mode.

@@ -19,7 +19,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-cache
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
