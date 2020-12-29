@@ -1,27 +1,25 @@
 "use strict";
 import path from "path";
 /* global __static */
-import { app, protocol, BrowserWindow, session } from "electron";
+import { app, protocol, BrowserWindow, session, Notification } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS_DEVTOOLS } from "electron-devtools-installer";
-const log = require("electron-log");
+// const log = require("electron-log");
 import { autoUpdater } from "electron-updater";
 const isDevelopment = process.env.NODE_ENV !== "production";
-
-autoUpdater.logger = log;
-autoUpdater.logger.transports.file.level = "info";
-log.info("App starting...");
+app.setAppUserModelId(process.execPath);
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: "app", privileges: { secure: true, standard: true } },
 ]);
 
-let win;
-
-function sendStatusToWindow(text) {
-  log.info(text);
-  win.webContents.send("message", text);
+function sendNotification(body) {
+  const notification = {
+    title: "Shortcuts app",
+    body,
+  };
+  new Notification(notification).show;
 }
 
 async function createWindow() {
@@ -51,16 +49,16 @@ async function createWindow() {
 }
 
 autoUpdater.on("checking-for-update", () => {
-  sendStatusToWindow("Checking for update...");
+  sendNotification("Checking for update...");
 });
 autoUpdater.on("update-available", () => {
-  sendStatusToWindow("Update available.");
+  sendNotification("Update available.");
 });
 autoUpdater.on("update-not-available", () => {
-  sendStatusToWindow("Update not available.");
+  sendNotification("Update not available.");
 });
 autoUpdater.on("error", (err) => {
-  sendStatusToWindow("Error in auto-updater. " + err);
+  sendNotification("Error in auto-updater. " + err);
 });
 autoUpdater.on("download-progress", (progressObj) => {
   let log_message = "Download speed: " + progressObj.bytesPerSecond;
@@ -72,10 +70,10 @@ autoUpdater.on("download-progress", (progressObj) => {
     "/" +
     progressObj.total +
     ")";
-  sendStatusToWindow(log_message);
+  sendNotification(log_message);
 });
 autoUpdater.on("update-downloaded", () => {
-  sendStatusToWindow("Update downloaded");
+  sendNotification("Update downloaded");
 });
 
 // Quit when all windows are closed.

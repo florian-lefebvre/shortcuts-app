@@ -1,6 +1,6 @@
 {
   "name": "shortcuts-app",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "private": true,
   "description": "Save your shortcuts in a desktop application, like Opera does.",
   "author": "Florian LEFEBVRE",
@@ -17,7 +17,8 @@
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
     "tailwind:prod": "postcss tailwind.css -o src/assets/css/tailwind.min.css -- prod",
-    "tailwind:dev": "postcss tailwind.css -o src/assets/css/tailwind.min.css -- dev"
+    "tailwind:dev": "postcss tailwind.css -o src/assets/css/tailwind.min.css -- dev",
+    "action:build": "cd src/assets/css && echo. > tailwind.min.css && yarn tailwind:prod"
   },
   "main": "background.js",
   "dependencies": {
