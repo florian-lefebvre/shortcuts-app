@@ -2,6 +2,9 @@
 
 by [Florian LEFEBVRE](https://github.com/florian-lefebvre)
 
+![Example image](example.png)
+![Settings page](example-settings.png)
+
 **TBD**
 
 ## Resources
