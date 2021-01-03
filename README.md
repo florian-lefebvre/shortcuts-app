@@ -25,6 +25,7 @@ https://github.com/marketplace/actions/electron-builder-action
 2. https://blog.aluxian.com/free-code-signing-certificate-for-open-source-software-d836270823a7
 3. Not really csc https://codenotary.com/
 4. https://docs.google.com/document/d/1e5hbWLSDe71jfEtzUiVqKbv5LO8KUBlD37oitckn3z0/edit#
+5. https://www.electron.build/configuration/win
 
 https://docs.codenotary.io/integrations/jsvcn.html
 
